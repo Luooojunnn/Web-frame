@@ -18,7 +18,7 @@
       <li><a href="https://twitter.com/vuejs" target="_blank" rel="noopener">Twitter</a></li>
       <li><a href="https://news.vuejs.org" target="_blank" rel="noopener">News</a></li>
     </ul>
-    <h3 @click="a(12)">Ecosystem</h3>
+    <h3 @click="hp">Ecosystem</h3>
     <ul>
       <li><a href="https://router.vuejs.org" target="_blank" rel="noopener">vue-router</a></li>
       <li><a href="https://vuex.vuejs.org" target="_blank" rel="noopener">vuex</a></li>
@@ -34,6 +34,7 @@ import { Component, Prop, Vue } from 'vue-property-decorator';
 
 @Component
 export default class HelloWorld extends Vue {
+  // that: any = this
   @Prop() private msg!:string
 
   a(n: string) {
@@ -42,6 +43,13 @@ export default class HelloWorld extends Vue {
   b() {
     this.a('b')
   }
+  hp() {
+    (this as any).$http.GET('a',{
+      a:1,
+      b:2
+    })
+  }
+  
 }
 </script>
 
