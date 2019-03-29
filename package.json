@@ -3,10 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve",
+    "serve": "vue-cli-service serve --env=test",
     "test:pc": "vue-cli-service serve --mode test:pc",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "huidu": "vue-cli-service build --mode huidu",
+    "prod": "vue-cli-service build --mode prod"
   },
   "dependencies": {
     "axios": "^0.18.0",

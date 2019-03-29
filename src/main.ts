@@ -1,10 +1,8 @@
-import Vue from "vue";
+import  ExtendVue  from '@/extendVue/extendVue';
 import App from "./App.vue";
-import Http from "./utils/service";
 
-Vue.config.productionTip = false;
-Vue.prototype.$http = Http
+ExtendVue.config.productionTip = false;
 
-new Vue({
+new ExtendVue({
   render: h => h(App)
 }).$mount("#app");
