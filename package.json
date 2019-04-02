@@ -3,8 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve --env=test",
-    "test:pc": "vue-cli-service serve --mode test:pc",
+    "serve": "vue-cli-service serve",
+    "test:pc": "concurrently \"node src/utils/node_middleware.js\" \"vue-cli-service serve --mode test:pc\" ",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
     "huidu": "vue-cli-service build --mode huidu",
@@ -24,6 +24,7 @@
     "@vue/eslint-config-prettier": "^4.0.1",
     "@vue/eslint-config-typescript": "^4.0.0",
     "babel-eslint": "^10.0.1",
+    "concurrently": "^4.1.0",
     "eslint": "^5.8.0",
     "eslint-plugin-vue": "^5.0.0",
     "node-sass": "^4.11.0",

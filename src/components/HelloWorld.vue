@@ -72,14 +72,13 @@ export default class HelloWorld extends ExtendVue {
   @Prop() private msg!: string;
 
   a(n: string) {
-    alert("a");
+    // alert("a");
   }
   b() {
     this.a("b");
   }
   hp() {
-    console.log(this.$post)
-      this.$post("a", {
+      this.$post("hellow", {
         a: 1,
         b: 2
       });

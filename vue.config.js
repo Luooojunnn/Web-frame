@@ -1,7 +1,7 @@
 // vue.config.js
-const path = require('path')
-const fs = require('fs')
-const url = require('url')
+const path = require("path");
+const fs = require("fs");
+const url = require("url");
 
 console.log(process.env.NODE_ENV);
 let env = {
@@ -10,24 +10,36 @@ let env = {
 };
 let config = {};
 
+function readFs(req, res) {
+  let fStream = fs.readFileSync(
+    path.join(__dirname, "src/apis/mock", url.parse(req.url).pathname)
+  );
+  res.json(JSON.parse(fStream.toString()));
+}
 if (process.env.NODE_ENV === env.dev) {
-  config = {
+  config = Object.assign({}, config, {
     devServer: {
-      before: function(app, server) {
-        app.post("*", function(req, res) {
-          console.log(url.parse(req.url))
-          let fStream = fs.readFileSync(path.join(__dirname, 'src/apis/mock', 'a.json'))
-          res.json(JSON.parse(fStream.toString()))
+      before: (app, server) => {
+        app.post("*.json", function(req, res) {
+          readFs(req, res);
         });
         app.get("*.json", function(req, res) {
-          console.log("--------------");
-          res.json({ custom: "response" });
+          readFs(req, res);
         });
       }
     }
-  };
+  });
 } else if (process.env.NODE_ENV === env["test:pc"]) {
-  console.log("联调pc环境");
+  // config = Object.assign({}, config, {
+  //   devServer: {
+  //     before: (app, server) => {
+  //       app.post('/aa', function(req, res) {
+  //         console.log(req)
+  //         console.log('=======')
+  //       })
+  //     }
+  //   }
+  // })
 }
 
-module.exports = config
+module.exports = config;
